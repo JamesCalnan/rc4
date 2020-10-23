@@ -6,10 +6,8 @@ def swap(arr, i, j):
   arr[j] = temp
 
 def convertToBinary(st):
-  
   key = ' '.join(format(ord(x), 'b') for x in st)
   keyArr = key.split(" ")
-
   return formatBinary(keyArr)
 
 def formatBinary(arr):
@@ -36,23 +34,21 @@ key = input("Key: ")
 for i in range(0,256):
   s[i] = i
 
-#print(s)
-
 j = 0
-
-#key = "Wiki" #convertToBinary("pwd12")
 
 keylength = len(key)
 
+#Key-scheduling algorithm (KSA)
 for i in range(0, 256):
   j = (j + s[i] + int(ord(key[i % keylength]))) % 256
-
   swap(s, i, j)
 
 
 
 result = ""
 j = 0
+
+#Pseudo-random generation algorithm (PRGA)
 for i in range(len(va)):
   i = (i + 1) % 256
   j = (j + s[i]) % 256
@@ -70,8 +66,8 @@ for i in range(len(va)):
   hexString = str(hexNum).upper() + " "
   result += hexString 
 
+  
 print(f"ciphertext: {result}")
-#print(result == "6CA86FE3CBC33C162595C3E78B9C97BC")
 
 #https://sites.math.washington.edu/~nichifor/310_2008_Spring/Pres_RC4%20Encryption.pdf
 #https://en.wikipedia.org/wiki/RC4
